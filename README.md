@@ -11,7 +11,12 @@ Este desafio consiste basicamente em:
 
 ## Entrega do desafio
 
-Para rodar basta clonar este repositório e executar:
+Clone este repositório ou baixo o arquivo docker-compose.ym:
+```
+git clone https://github.com/fabiojaniolima/fullcycle-desafio-nginx-nodejs.git
+```
+
+Execute:
 ```
 docker-compose up -d
 ```
