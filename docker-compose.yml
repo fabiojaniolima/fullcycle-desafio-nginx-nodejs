@@ -1,0 +1,57 @@
+version: '3'
+services:
+    db:
+        container_name: fullcycle_mysql
+        image: mysql:5.7
+        restart: always
+        environment:
+            - MYSQL_DATABASE=my_app
+            - MYSQL_ROOT_PASSWORD=secret-pw
+            - MYSQL_USER=app_user
+            - MYSQL_PASSWORD=secret-pw
+        healthcheck:
+            test: "/etc/init.d/mysql status"
+            interval: 10s
+            retries: 3
+        ports:
+            - "3306:3306"
+        volumes:
+            - db-data:/var/lib/mysql
+        networks:
+            - my_app
+    nginx:
+        container_name: fullcycle_nginx
+        image: fabiojanio/fullcycle_nginx
+        restart: always
+        ports:
+            - "8080:80"
+        networks:
+            - my_app
+        depends_on:
+            nodejs:
+                condition: service_healthy
+    nodejs:
+        container_name: fullcycle_nodejs
+        image: fabiojanio/fullcycle_nodejs
+        restart: always
+        ports:
+            - "3000:3000"
+        networks:
+            - my_app
+        healthcheck:
+            test: "dockerize -wait http://localhost:3000/ping -timeout 15s"
+            interval: 5s
+            retries: 3
+        depends_on:
+            db:
+                condition: service_healthy
+        command: >
+            sh -c "npm run postinstall
+            && npx knex migrate:up && npx knex seed:run && npm start"
+
+volumes:
+    db-data:
+
+networks:
+    my_app:
+        driver: bridge

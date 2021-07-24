@@ -1,0 +1,24 @@
+{
+  "name": "fj_node",
+  "version": "1.0.0",
+  "description": "Essa aplicação não representa em nenhum grau o modelo de uma aplicação pronta para produção, tão logo foi desenvolvida tão somente em resposta ao desafio FullCycle 2.0",
+  "main": "./src/index.js",
+  "scripts": {
+    "start": "node .",
+    "postinstall": "node ./src/console/postinstall.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "test"
+  ],
+  "author": "Fabio J L Ferreira <fabiojaniolima@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "knex": "^0.95.7",
+    "mysql": "^2.18.1",
+    "pug": "^3.0.2"
+  }
+}

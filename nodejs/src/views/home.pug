@@ -1,0 +1,18 @@
+html
+  head
+    title= 'Desafio FullCycle 2.0'
+    style(type='text/css').
+      input[type=text] {
+        border: 1px solid;
+        width: 180px;
+      }
+  body
+    h1= 'Full Cycle Rocks!'
+    h3= 'Cadastre um novo nome aqui:'
+    form(action="/" method="post")
+      input(type="text", name="name", value="", placeholder="Nome")
+      input(type="submit" value="Cadastrar")
+    h3= 'Lista de nomes:'
+    ul
+      each person in people
+        li= person.name
