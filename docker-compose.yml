@@ -13,8 +13,6 @@ services:
             test: "/etc/init.d/mysql status"
             interval: 10s
             retries: 3
-        ports:
-            - "3306:3306"
         volumes:
             - db-data:/var/lib/mysql
         networks:
@@ -34,8 +32,6 @@ services:
         container_name: fullcycle_nodejs
         image: fabiojanio/fullcycle_nodejs
         restart: always
-        ports:
-            - "3000:3000"
         networks:
             - my_app
         healthcheck:
